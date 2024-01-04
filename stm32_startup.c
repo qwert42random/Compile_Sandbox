@@ -1,4 +1,4 @@
-#include<stdint.h>
+#include <stdint.h>
 
 #define SRAM_START  0x20000000U
 #define SRAM_SIZE   (128U * 1024U) //128KB
@@ -21,7 +21,6 @@ int main(void);
 /* function prototypes of STM32F407x system exception and IRQ handlers */
 
 void Reset_Handler(void);
-void SysTick_Handler(void);
 
 void NMI_Handler 					(void) __attribute__ ((weak, alias("Default_Handler")));
 void HardFault_Handler 				(void) __attribute__ ((weak, alias("Default_Handler")));
@@ -31,7 +30,7 @@ void UsageFault_Handler 			(void) __attribute__ ((weak, alias("Default_Handler")
 void SVC_Handler 					(void) __attribute__ ((weak, alias("Default_Handler")));
 void DebugMon_Handler 				(void) __attribute__ ((weak, alias("Default_Handler")));
 void PendSV_Handler   				(void) __attribute__ ((weak, alias("Default_Handler")));
-// void SysTick_Handler  				(void) __attribute__ ((weak, alias("Default_Handler")));
+void SysTick_Handler  				(void) __attribute__ ((weak, alias("Default_Handler")));
 void WWDG_IRQHandler 				(void) __attribute__ ((weak, alias("Default_Handler")));
 void PVD_IRQHandler 				(void) __attribute__ ((weak, alias("Default_Handler")));             
 void TAMP_STAMP_IRQHandler 			(void) __attribute__ ((weak, alias("Default_Handler")));      
@@ -113,9 +112,6 @@ void DCMI_IRQHandler             	(void) __attribute__ ((weak, alias("Default_Ha
 void CRYP_IRQHandler             	(void) __attribute__ ((weak, alias("Default_Handler")));
 void HASH_RNG_IRQHandler         	(void) __attribute__ ((weak, alias("Default_Handler")));
 void FPU_IRQHandler              	(void) __attribute__ ((weak, alias("Default_Handler")));                          
-
-// int test_int __attribute__((section(".test_section")));
-// long test_long_int __attribute((section(".test_section")));
 
 uint32_t vectors[] __attribute__((section(".isr_vector")))   = {
 	STACK_START,
@@ -219,11 +215,6 @@ uint32_t vectors[] __attribute__((section(".isr_vector")))   = {
 };
 
 void Default_Handler(void)
-{
-	while(1);
-}
-
-void SysTick_Handler(void)
 {
 	while(1);
 }

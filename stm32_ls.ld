@@ -33,8 +33,8 @@ SECTIONS
 		
 		/*
 			This is the location counter. It tracks the current offset into a given memory region.
-			In the statement below, we are creating a symbol to pass into the startup script with the
-			address at the end of *(.rodata).
+			In the statement below, we are creating a symbol _etext to pass into the startup script with the
+			address at the end of *(.rodata). The location counter always tracks VMA of section being used.
 		*/
 		
 		_etext = .;
